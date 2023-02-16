@@ -10,8 +10,8 @@ int main(void)
 	int i;
 	float f;
 
-	printf("Size of a char: %lu.\n", (unassigned long)sizeof(c));
-	printf("Size of an int: %lu.\n", (unassigned long)sizeof(i));
-	printf("Size of a float: %lu.\n", (unassigned long)sizeof(f));
+	printf("Size of a char: %lu.\n", sizeof(c));
+	printf("Size of an int: %lu.\n", sizeof(i));
+	printf("Size of a float: %lu.\n", sizeof(f));
 	return (0);
 }
