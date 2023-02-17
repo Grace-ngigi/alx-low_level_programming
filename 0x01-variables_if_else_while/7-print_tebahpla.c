@@ -8,6 +8,6 @@ int main(void)
 	char l;
 
 	for (l = 'z'; l >= 'a'; l--)
-		putchar(j);
+		putchar(l;
 	return (0);
 }
