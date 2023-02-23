@@ -1,7 +1,7 @@
 #include "main.h"
 /**
  * print_line - draws a straight  line in the termina
- * @c: Variable
+ * @n: Variable
  * Return: 0
  */
 
