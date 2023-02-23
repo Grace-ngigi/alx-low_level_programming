@@ -7,13 +7,13 @@
 
 void more_numbers(void)
 {
-	char x = '0', y;
+	char x = 0, y;
 
-	while (x <= '9')
+	while (x <= 9)
 	{
-		while (y <= '14')
+		while (y <= 14)
 		{
-			_putchar(y + '0');
+			_putchar((y % 10) + '0');
 			y++;
 		}
 		_putchar('\n');
