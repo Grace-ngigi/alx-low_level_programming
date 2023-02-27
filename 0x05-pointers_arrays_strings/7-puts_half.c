@@ -6,16 +6,17 @@
  */
 void puts_half(char *str)
 {
-	int length, midpoint, i, j;
-	char secondHalf[100];
+	int length, midpoint, i;
 
-	length = strlen(str);
-	if (length % 2 != 0)
-		midpoint = (length - 1) / 2;
-	else
-		midpoint = length / 2;
+	length = 0;
 
-	for (i = midpoint, j = 0; i <= length; i++, j++)
-		secondHalf[j] = str[i];
-	_putchar(secondHalf);
+	for (i = 0; str[i] != '\0'; i++)
+		length++;
+	midpoint = length / 2;
+	
+	if((length % 2) == 1)
+		midpoint = ((length + 1) / 2);
+	for (i = midpoint; str[i] != '\0'; i++,)
+		_putchar(str[i]);
+	_putchar(10);
 }
