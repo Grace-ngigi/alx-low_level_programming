@@ -6,19 +6,31 @@
  */
 int _atoi(char *s)
 {
-	int x, y, sign, num;
+	int ind1, ind2, sign = 1;
+	unsigned int res;
+	char str;
 
-	if (s[0] == '-')
-		sign = -1;
-	if (sign == -1)
-		y = 1;
-	else
-		y = 0;
-	num = 0;
+	ind1 = 0;
+	res = 0;
 
-	for (x = y; s[x] != '\0'; x++)
-		num = num * 10 + s[x] - '0';
-	if (sign == -1)
-		num = -num;
-	return (num);
+	while (s[ind1] != '\0')
+	{
+		str = s[ind1];
+		if (str == '-')
+			sign *= -1;
+		if (str >= '0' && str <= '9')
+		{
+			ind2 = ind1;
+			while (s[ind2] > 47 && s[ind2] < 58)
+			{
+				res = (res * 10) + s[ind2] - '0';
+				ind2++;
+			}
+			break;
+		}
+		ind1++;
+	}
+	if (sign < 0)
+		res *= sign;
+	return (res);
 }
