@@ -1,14 +1,14 @@
 #include "main.h"
 /**
- * rot13 - encodes a string using rot13
+ * rot13 - encodes a string usng rot13
  * @s: string to be encoded
- * Return: pointer to the encoded string
+ * Return: encoded string
  */
 char *rot13(char *s)
 {
 	int i, j;
 	char normal[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
-	char rot[] "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
+	char rot[] = "NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm";
 
 	for (i = 0; s[i] != '\0'; i++)
 	{
