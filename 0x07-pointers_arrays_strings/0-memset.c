@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include "main.h"
 /**
  * _memset - fills memory with a constant byte
@@ -8,10 +7,11 @@
  * Return: pointer to destination
  */
 
-
 char *_memset(char *s, char b, unsigned int n)
 {
+	unsigned char *t = s;
+
 	while (n--)
-		*s++ = b;
+		*t++ = b;
 	return (s);
 }
