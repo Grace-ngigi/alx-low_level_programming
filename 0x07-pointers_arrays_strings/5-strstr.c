@@ -7,21 +7,22 @@
  */
 char *_strstr(char *haystack, char *needle)
 {
-	char *ptr_haystack;
-	char *ptr_needle;
-
-	while (*haystack != '\0')
+	while (*haystack)
 	{
-		ptr_haystack = haystack;
-		ptr_needle = needle;
-		while (*haystack != '\0' && ptr_needle != '\0' && *haystack == *ptr_needle)
+		char *ptr_haystack = haystack;
+		char *ptr_needle = needle;
+
+		while (*ptr_needle && *haystack && *haystack == ptr_needle)
 		{
 			haystack++;
 			ptr_needle++;
 		}
+
 		if (!*ptr_needle)
+		{
 			return (ptr_haystack);
-		haystack = ptr_haystack + 1;
+		}
+		haystack = ptr_stack + 1;
 	}
 	return (0);
 }
