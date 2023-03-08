@@ -1,4 +1,4 @@
-#include " man.h"
+#include " main.h"
 /**
  * _pow_recursion - return thre value of x rasied to the power of y
  * @x: given variable
