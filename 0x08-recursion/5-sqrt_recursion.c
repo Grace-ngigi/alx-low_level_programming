@@ -25,5 +25,5 @@ int check_for_square(int num, int square)
 		return (num);
 	if (num * num > square)
 		return (-1);
-	return (check_for_sqaure(num + 1, square));
+	return (check_for_square(num + 1, square));
 }
