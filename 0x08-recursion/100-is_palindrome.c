@@ -1,4 +1,5 @@
 #include "main.h"
+#include <string.h>
 /**
  * is_palindrome - checks for a palindrome
  * @s: string being checked
@@ -8,8 +9,7 @@ int is_palindrome(char *s)
 {
 	int i;
 
-	for (i = 0; s[i] != '\0'; i++)
-		continue;
+	i = strlen(s);
 	return (check_string(s, 0, i - 1));
 }
 /**
