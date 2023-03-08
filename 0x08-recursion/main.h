@@ -11,5 +11,6 @@ int factorial(int n);
 int _sqrt_recursion(int n);
 int check_for_square(int num, int square);
 int is_prime_number(int n);
+int check_prime(int num, int i);
 
 #endif /* MAIN_H */
