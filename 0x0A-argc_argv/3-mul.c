@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 /**
  * main - multiplies two numbers
  * @argc: args count
@@ -17,6 +18,7 @@ int main(int argc, char *argv[])
 		printf("%d\n", mul);
 	}
 	return (0);
+	}
 	else
 	{
 		printf("Error\n");
