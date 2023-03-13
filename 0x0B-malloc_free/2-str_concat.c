@@ -9,7 +9,7 @@
 char *str_concat(char *s1, char s2)
 {
 	int i, j;
-	int *p;
+	char *p;
 
 	/* If null treat as empty strings */
 	if (s1 == NULL)
