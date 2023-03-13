@@ -6,7 +6,7 @@
  * @s2: the other string to be joined together
  * Return: pointer to newly allocated memory null on failure
  */
-char *str_concat(char *s1, char s2)
+char *str_concat(char *s1, char *s2)
 {
 	int i, j;
 	char *p;
