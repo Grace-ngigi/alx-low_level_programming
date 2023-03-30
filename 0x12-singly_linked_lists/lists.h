@@ -4,7 +4,7 @@
 struct list
 {
 	char *str;
-	int len;
+	unsigned int len;
 	struct list *next;
 }
 typedef struct list list_t;
