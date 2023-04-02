@@ -3,6 +3,13 @@
 
 #include <stddef.h>
 
+/**
+ * struct list - a node
+ * @str: data to be stored in a node
+ * @len: length of the str
+ * @next: pointer to the next node
+ * Description: contains the content of a node
+ */
 struct list
 {
 	char *str;
