@@ -11,8 +11,10 @@ int main(int argc, char *argv[])
 	char *buff;
 
 	if (argc != 3)
-		dprintf(STDERR_FILENO, "Usage: cp file_from fil_to");
-	exit(97);
+	{
+		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+		exit(97);
+	}
 	buff = create_buffer(argv[2]);
 	fd_from = open(argv[1], O_RDONLY);
 	r_file = read(fd_from, buff, 1024);
@@ -24,7 +26,6 @@ int main(int argc, char *argv[])
 		exit(98);
 	}
 	w_file = write(fd_to, buff, r_file);
-
 	if (fd_to == -1 || w_file == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
@@ -38,8 +39,8 @@ int main(int argc, char *argv[])
 		free(buff);
 		_close(fd_from);
 		_close(fd_to);
-		return (0);
 	}
+	return (0);
 }
 
 /**
