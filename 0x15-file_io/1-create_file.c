@@ -16,9 +16,11 @@ int create_file(const char *filename, char *text_content)
 		for (i = 0; text_content[i] != '\0'; i++)
 			;
 	}
+	else
+	{
 	fd = open(filename, O_CREAT | O_RDWR | O_TRUNC, 0600);
 	w_file = write(fd, text_content, i);
-
+	}
 	if (fd == -1 || w_file == -1)
 		return (-1);
 	close(fd);
