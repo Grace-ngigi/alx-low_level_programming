@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
 	}
 	r_file = read(fd_from, buff, 1024);
 	fd_to = open(argv[2], O_WRONLY | O_APPEND);
-	if (r_file > 0)
+	while (r_file > 0)
 	{
 		free(buff);
 		_close(fd_from);
