@@ -1,4 +1,6 @@
 #include "main.h"
+#include <stdlib.h>
+
 /**
  * main - copies the content of a file to another file
  * @argc: args count
@@ -25,11 +27,9 @@ int main(int argc, char *argv[])
 	if (fd_to == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-		close(fd_from);
 		exit(99);
 	}
-	r_file = read(fd_from, buff, sizeof(buff));
-	while (r_file > 0)
+	while ((r_file = read(fd_from, buff, sizeof(buff))) > 0)
 	{
 		w_file = write(fd_to, buff, r_file);
 		if (w_file == -1)
@@ -49,7 +49,6 @@ int main(int argc, char *argv[])
 	}
 	return (0);
 }
-
 /**
  * _close - closes a file
  * @fd: file descriptor to be closed
