@@ -8,56 +8,46 @@
 int main(int argc, char *argv[])
 {
 	int fd_from, fd_to, r_file, w_file;
-	char *buff;
+	char *buff[1024];
 
 	if (argc != 3)
 	{
 		dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
 		exit(97);
 	}
-	buff = create_buffer(argv[2]);
 	fd_from = open(argv[1], O_RDONLY);
-	r_file = read(fd_from, buff, 1024);
-	fd_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
-	if (fd_from == -1 || r_file == -1)
+	if (fd_from == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't red from file %s\n", argv[1]);
-		free(buff);
 		exit(98);
 	}
-	w_file = write(fd_to, buff, r_file);
-	if (fd_to == -1 || w_file == -1)
+	fd_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC, 0664);
+	if (fd_to == -1)
 	{
 		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-		free(buff);
+		close(fd_from);
 		exit(99);
 	}
-	r_file = read(fd_from, buff, 1024);
-	fd_to = open(argv[2], O_WRONLY | O_APPEND);
+	r_file = read(fd_from, buff, sizeof(buff));
 	while (r_file > 0)
 	{
-		free(buff);
+		w_file = write(fd_to, buff, r_file);
+		if (w_file == -1)
+		{
+			dprintf(STDERR_FILENO, "Error: Can't write to file%s\n", argv[2]);
+			_close(fd_from);
+			_close(fd_to);
+			exit(99);
+		}
+	}
+	if (r_file == -1)
+	{
+		dprintf(STDERR_FILENO, "Error: Can't rad from file%s\n", argv[1]);
 		_close(fd_from);
 		_close(fd_to);
+		exit(98);
 	}
 	return (0);
-}
-
-/**
- * create_buffer - creates a buffer
- * @filename: pointer to a file
- * Return: chr pointer to the created buffer
- */
-
-char *create_buffer(char *filename)
-{
-	char *buff;
-
-	buff = malloc(sizeof(char) * 1024);
-	if (buff == NULL)
-		dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename);
-	exit(99);
-	return (buff);
 }
 
 /**
