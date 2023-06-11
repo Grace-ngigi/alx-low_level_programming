@@ -16,9 +16,8 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	if (!ht || !*key || !key || !value)
 		return (0);
-		
-	/* determine index of the provided key */	
-	keyIndex = key_index((unsigned char *)key, ht->size);	
+	/* determine index of the provided key */
+	keyIndex = key_index((unsigned char *)key, ht->size);
 	for (i = keyIndex; ht->array[i]; i++)
 	{
 		/* Check existance */
