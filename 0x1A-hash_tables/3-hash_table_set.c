@@ -16,25 +16,25 @@ int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 
 	if (!ht || !*key || !key || !value)
 		return (0);
-		/* determine index of the provided key */
-		keyIndex = key_index((unsigned char *)key, ht->size);
-		for (i = keyIndex; ht->array[i]; i++)
+		
+	/* determine index of the provided key */	
+	keyIndex = key_index((unsigned char *)key, ht->size);	
+	for (i = keyIndex; ht->array[i]; i++)
+	{
+		/* Check existance */
+		if (strcmp(ht->array[i]->key, key) == 0)
 		{
-			/* Check existance */
-			if (strcmp(ht->array[i]->key, key) == 0)
-			{
-				free(ht->array[i]->value);
-				ht->array[i]->value = strdup(value);
-				return (1);
-			}
+			free(ht->array[i]->value);
+			ht->array[i]->value = strdup(value);
+			return (1);
 		}
-		newElement = malloc(sizeof(hash_node_t));
-		if (newElement == NULL)
-			return (0);
-		newElement->key = strdup(key);
-		newElement->value = strdup(value);
-		newElement->next = ht->array[keyIndex];
-		ht->array[keyIndex] = newElement;
-		return (1);
-	return (0);
+	}
+	newElement = malloc(sizeof(hash_node_t));
+	if (newElement == NULL)
+		return (0);
+	newElement->key = strdup(key);
+	newElement->value = strdup(value);
+	newElement->next = ht->array[keyIndex];
+	ht->array[keyIndex] = newElement;
+	return (1);
 }
