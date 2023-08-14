@@ -1,37 +1,51 @@
 #include "lists.h"
 /**
- * print_listint_safe - prints a linked list
- * @head: pointer to head of the list
- * Return: number of elements in the list
+ * free_listint_safe - frees both cyclic and acyclic linked lists
+ * @h: pointer to the head of the list
+ * Return: number of nodes freed
  */
-size_t print_listint_safe(const listint_t *head)
+size_t free_listint_safe(listint_t **h)
 {
-	size_t i = 0;
-	const listint_t *nextnode = head;
-	const listint_t *doubleNextnode = head;
+	listint_t *temp, *slow, *fast;
+	unsigned int i = 0;
 
-	while (doubleNextnode != NULL && doubleNextnode->next != NULL)
+	slow = fast = *h;
+	if (h == NULL || *h == NULL)
+		return (0);
+	while (fast && fast->next)
 	{
-		printf("[%p] %d\n", (void *)nextnode, nextnode->n);
-		nextnode = nextnode->next;
-		doubleNextnode = doubleNextnode->next->next;
-
-		if (nextnode == doubleNextnode)
+		slow = slow->next;
+		fast = fast->next->next;
+		if (slow == fast)
 		{
-			printf("[%p] %d\n", (void *)nextnode, nextnode->n);
-			printf("-> [%p] %d\n", (void *)nextnode->next, nextnode->next->n);
-			break; /* Cycle detected, exit loop */
+			slow = *h; /* reset slow to head */
+			while (slow != fast)
+			{
+				temp = slow;
+				slow = slow->next;
+				free(temp);
+				i++;
+			}
+			while (fast->next != slow)
+			{
+				temp = fast;
+				fast = fast->next;
+				free(temp);
+				i++;
+			}
+			free(slow); /* where cycle starts */
+			i++;
+			*h = NULL;
+			return (i);
 		}
+	}
+	while (*h != NULL)
+	{
+		temp = *h;
+		*h = (*h)->next;
+		free(temp);
 		i++;
 	}
-	if (doubleNextnode == NULL || doubleNextnode->next == NULL)
-	{
-		while (nextnode != NULL)
-		{
-			printf("[%p] %d\n", (void *)nextnode, nextnode->n);
-			nextnode = nextnode->next;
-			i++;
-		}
-	}
+	*h = NULL;
 	return (i);
 }
